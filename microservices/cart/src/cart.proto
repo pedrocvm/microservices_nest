@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package cart;
+
+service CartService {
+  rpc FindAll (Empty) returns (GetAllCartsResponse) {}
+  rpc FindById (GetCartRequest ) returns (CartModel) {}
+  rpc Create (AddCartRequest) returns (CartModel) {}
+  rpc Update (UpdateCartRequest) returns (CartModel) {}
+  rpc Delete (DeleteCartRequest) returns (DeleteCartResponse) {}
+
+  message Empty {}
+
+  message CartModel {
+    string shoppingCartId = 1;
+    string userId = 2;
+    double totalPrice = 3;
+    int32 totalQuantity = 4;
+    string description = 5; 
+    repeated ProductModelGet products = 6;
+  }
+
+  message ProductModel {
+    string productId = 1;
+    double price = 2;
+    int32 quantity = 3;
+  }
+
+  message GetAllCartsResponse {
+    int32 total = 1;
+    repeated CartModel carts = 2;
+  }
+
+  message ProductModelGet {
+    string productId = 1;
+    string description = 2;
+    double price = 3;
+    int32 quantity = 4;
+  }
+
+  message GetCartRequest  {
+    string id = 1;
+  }
+ 
+  message AddCartRequest  {
+    string userId = 1; 
+    repeated ProductModel products = 2;
+  }
+ 
+  message UpdateCartRequest {
+    string id = 1;
+    repeated UpdateCartBody products = 2;
+  }
+
+  message UpdateCartBody {
+    string productId = 1;
+    int32 quantity = 2;
+  }
+
+  message DeleteCartRequest {
+    string id = 1;
+  }
+
+  message DeleteCartResponse {
+    string message = 1;
+  }
+}
