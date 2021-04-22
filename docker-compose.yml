@@ -21,19 +21,19 @@ services:
     ports:
       - 27017:27017
 
-  api:
-    build: ./backend
-    container_name: Backend
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_NAME: challenge_primeit
-      DB_USERNAME: postgres
-      DB_PASSWORD: admin
-    ports:
-      - 3315:3315
-    depends_on:
-      - postgres
+  # api:
+  #   build: ./backend
+  #   container_name: Backend
+  #   environment:
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_NAME: challenge_primeit
+  #     DB_USERNAME: postgres
+  #     DB_PASSWORD: admin
+  #   ports:
+  #     - 3315:3315
+  #   depends_on:
+  #     - postgres
 
   products:
     build: ./microservices/product
@@ -45,16 +45,16 @@ services:
     environment:
       - MONGO_URI=mongodb://mongodb/challenge_primeit
 
-  cart:
-    build: ./microservices/cart
-    container_name: Cart
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_NAME: challenge_primeit
-      DB_USERNAME: postgres
-      DB_PASSWORD: admin
-    ports:
-      - 9006:9006
-    depends_on:
-      - postgres
+  # cart:
+  #   build: ./microservices/cart
+  #   container_name: Cart
+  #   environment:
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_NAME: challenge_primeit
+  #     DB_USERNAME: postgres
+  #     DB_PASSWORD: admin
+  #   ports:
+  #     - 9006:9006
+  #   depends_on:
+  #     - postgres
